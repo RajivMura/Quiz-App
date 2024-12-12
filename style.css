@@ -52,7 +52,8 @@ body{
     transition: all 0.3s;
 }
 
-.btn:hover:not([disabled]){
+/* :not([disabled]) hover effect will when button is not disabled */
+.btn:hover:not([disabled]){ 
     background: #222;
     color: #fff;
 

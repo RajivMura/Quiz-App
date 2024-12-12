@@ -62,7 +62,7 @@ function startQuiz() {
 }
 
 function showQuestion() {
-    resetState();
+    resetState();   // for reset the previous value of the button
     let currentQuestion = questions[currentQuestionIndex];
     let questionNo = currentQuestionIndex + 1;
     questionElement.innerHTML = questionNo + ". " + currentQuestion.
@@ -83,6 +83,8 @@ function showQuestion() {
 }
 
 
+
+// this will remove the previous answer which was written in the html
 function resetState() {
     nextButton.style.display = "none";
     while (answersButtons.firstChild) {
@@ -96,20 +98,21 @@ function selectAnswer(e) {
     const selectedBtn = e.target;
     const isCorrect = selectedBtn.dataset.correct === "true";
     if (isCorrect) {
-        selectedBtn.classList.add("correct");
+        selectedBtn.classList.add("correct");  //it will add the class name correct
         score++;
     } else {
-        selectedBtn.classList.add("incorrect");
+        selectedBtn.classList.add("incorrect"); // it will add the class name incorrect
     }
 
-    Array.from(answersButtons.children).forEach(button => {
+    Array.from(answersButtons.children).forEach(button => {   //if user click on wrong answer it will automatically highlight the correct one.
         if (button.dataset.correct === "true") {
             button.classList.add("correct");
         }
-        button.disabled = true;
+        button.disabled = true; // disable all the option after after clicking on one
     });
-    nextButton.style.display = "block"
+    nextButton.style.display = "block"; // it will dispaly the nextbutton so the we can move on next questions
 }
+
 
 
 function showScore() {
@@ -119,6 +122,7 @@ function showScore() {
     nextButton.style.display = "block";
 }
 
+
 function handleNextButton() {
     currentQuestionIndex++;
     if (currentQuestionIndex < questions.length) {
@@ -127,6 +131,7 @@ function handleNextButton() {
         showScore();
     }
 }
+
 
 nextButton.addEventListener('click', () => {
     if (currentQuestionIndex < questions.length) {
